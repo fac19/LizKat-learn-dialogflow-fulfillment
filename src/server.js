@@ -24,7 +24,7 @@ app.post("/appointments", (req, res) => {
   }
   db.get("appointments").push(userRequest).write(); // .write ensures it is actually saved
   const fmessage = req.body.queryResult.fulfillmentMessages
-  res.json({ fulfillmentMessages: fmessage})
+  res.json({fmessage})
 })
 
 
