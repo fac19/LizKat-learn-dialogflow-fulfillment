@@ -16,4 +16,17 @@ app.get("/", (req, res) => {
   }
 });
 
+
+app.post("/appointments", (req, res) => {
+
+  const userRequest = {
+    date_time: req.body.queryResult.parameters["date-time"].date_time,
+  }
+  db.get("appointments").push(userRequest).write(); // .write ensures it is actually saved
+  const fmessage = req.body.queryResult.fulfillmentMessages
+  res.json({ fulfillmentMessages: fmessage})
+})
+
+
+
 module.exports = app;

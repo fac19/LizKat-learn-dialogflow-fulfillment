@@ -2,13 +2,19 @@ const test = require("tape");
 const supertest = require("supertest");
 const app = require("./server");
 
+test("Pointless test...", (t) => {
+  t.equal(1 , 1);
+  t.end();
+})
+
 test("Returns 404 when there are no appointments", (t) => {
   const expectedResponse = { message: "No appointments found" };
   supertest(app)
-    .get("/")
-    .expect(404, expectedResponse)
-    .catch(t.error)
-    .finally(t.end);
+  .get("/")
+  .expect(404, expectedResponse)
+  .catch(t.error)
+  .finally(t.end);
+  console.log("expectedResponse", expectedResponse)
 });
 
 const examplePost = {
@@ -68,6 +74,7 @@ test("Saves a new appointment", (t) => {
     .expect(200, expectedResponse)
     .catch(t.error)
     .finally(t.end);
+    console.log("expectedResponse", expectedResponse)
 });
 
 // This test has to run afer the POST test
@@ -75,8 +82,9 @@ test("Saves a new appointment", (t) => {
 test("Returns newly created appointment", (t) => {
   const expectedResponse = [{ date_time: "2020-06-29T05:00:00+01:00" }];
   supertest(app)
-    .get("/")
-    .expect(200, expectedResponse)
-    .catch(t.error)
-    .finally(t.end);
+  .get("/")
+  .expect(200, expectedResponse)
+  .catch(t.error)
+  .finally(t.end);
+  console.log("expectedResponse", expectedResponse)
 });
